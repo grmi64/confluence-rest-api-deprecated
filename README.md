@@ -14,12 +14,14 @@ user_name   = 'username'
 password    = 'password'
 space_key   = 'space'
 
+##################################################################
+# A connection to the client must be done before any page requests
+##################################################################
 client  = ConfluenceClient.new(rest_server, user_name, password)
 
 #################################
 # Query an existing page by title
 #################################
-
 page = PageObject.new('page_title', space_key)
 if page.id.nil? 
     puts '*** WARNING: Unable to open page: page_title'
@@ -38,7 +40,6 @@ end
 ###############################
 # Query an existing page by id
 ###############################
-
 page = PageObject.new(123456789, space_key)
 if page.title.nil? 
     puts '*** WARNING: Unable to open page with id: 123456789'
@@ -57,7 +58,6 @@ end
 ###########################################################
 # Create a new page with a page titled "Home" as its parent
 ###########################################################
-
 home_page = PageObject.new('Home', space_key)
 unless home_page.id.nil?
   client.create_page_with_parent('My Page Title', space_key, 'My Page Body Content', home_page.id)
@@ -66,7 +66,6 @@ end
 #############################
 # Add an attachment to a page
 #############################
-
 page_obj = PageObject.new('My Page Title', space_key)
 unless page_obj.id.nil?
   img_base_name = 'my/image/location'
@@ -81,7 +80,6 @@ end
 ##################################
 # Remove an attachment from a page
 ##################################
-
 page_obj = PageObject.new('My Page Title', space_key)
 id = page_obj.attachment_id('my_image.png')
 if id.nil?
@@ -115,7 +113,6 @@ page_obj.save_file_attachments(page_obj.id, './')
 ###############
 # Delete a page
 ###############
-
 page_obj = PageObject.new('My Page Title', space_key)
 if page_obj.delete_page(page_obj.id).nil?
   puts "*** WARNING: Page with ID #{page_obj.id} was not deleted."
