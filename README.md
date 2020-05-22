@@ -83,7 +83,7 @@ title = 'My New Page Title'
 # Storage Format for the page can also be modified here if needed. 
 content = page_obj.storage_format
 unless page_obj.id.nil? || parent_obj.id.nil?
-  client.update_page_with_parent(page_obj, title, parent_obj, spacekey, content)
+  client.update_page_with_parent(page_obj, title, parent_obj, space_key, content)
 end
 
 
