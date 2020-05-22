@@ -63,6 +63,30 @@ unless home_page.id.nil?
   client.create_page_with_parent('My Page Title', space_key, 'My Page Body Content', home_page.id)
 end
 
+###########################################################
+# Update a page with a new title and keep the same parent
+###########################################################
+page_obj = PageObject.new('My Page Title', space_key)
+title = 'My New Page Title'
+# Storage Format for the page can also be modified here if needed. 
+content = page_obj.storage_format
+unless page_obj.id.nil?
+  client.update_page_with_no_parent(page_obj, title, space_key, content)
+end
+
+################################################
+# Update a page with a new title and new parent
+################################################
+page_obj = PageObject.new('My Page Title', space_key)
+parent_obj = PageObject.new('My New Parent', space_key)
+title = 'My New Page Title'
+# Storage Format for the page can also be modified here if needed. 
+content = page_obj.storage_format
+unless page_obj.id.nil? || parent_obj.id.nil?
+  client.update_page_with_parent(page_obj, title, parent_obj, spacekey, content)
+end
+
+
 #############################
 # Add an attachment to a page
 #############################
