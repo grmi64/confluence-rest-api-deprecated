@@ -22,14 +22,14 @@ class ConfluenceClient
 
   end
 
-  def update_page_with_parent(page_obj, parent_page_obj, spacekey, content)
+  def update_page_with_parent(page_obj, title, parent_page_obj, spacekey, content)
 
     version = page_obj.version + 1
 
     page_meta = { type:     'update_page_with_parent',
                   pageid:   page_obj.id,
                   parentid: parent_page_obj.id,
-                  title:    page_obj.title,
+                  title:    title,
                   spacekey: spacekey,
                   content:  content,
                   version:  version }
@@ -49,13 +49,13 @@ class ConfluenceClient
 
   end
 
-  def update_page_with_no_parent(page_obj, spacekey, content)
+  def update_page_with_no_parent(page_obj, title, spacekey, content)
 
     version = page_obj.version + 1
 
     page_meta = { type:     'update_page_with_no_parent',
                   pageid:   page_obj.id,
-                  title:    page_obj.title,
+                  title:    title,
                   spacekey: spacekey,
                   content:  content,
                   version:  version }
